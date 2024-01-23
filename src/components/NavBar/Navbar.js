@@ -3,12 +3,11 @@ import { NavWrap, NavCon, UserSec, Count } from "./NavbarStyles";
 import { Link, useLocation } from "react-router-dom";
 import CartIcon from "../../assets/Images/Cart.png";
 import ProfileIcon from "../../assets/Images/ProfileIcon.png";
-// import CartComp from "../Cart/Cart";
 
 const Navbar = () => {
   const location = useLocation();
   return (
-    <>
+    <>  
       <NavCon>
         <NavWrap>
           <Link to="/">
@@ -29,28 +28,43 @@ const Navbar = () => {
           </div>
 
           <UserSec>
+            <Link
+              className={location.pathname === "/login" ? "active" : ""}
+              to="/login"
+            >
+              <button>Login</button>
+            </Link>
+
+            <Link
+              className={location.pathname === "/register" ? "active" : ""}
+              to="/register"
+            >
+              <button>Register</button>
+            </Link>
+          </UserSec>
+
+          {/* <UserSec>
             <div
               className="Cart"
               onClick={() => {
                 // handleClickCart();
               }}
             >
-              {/* {Cart && Cart.length > 0 ? (
+              {Cart && Cart.length > 0 ? (
                 <Count>
                   <span>{Cart.length}</span>
                 </Count>
               ) : (
                 ""
-              )} */}
+              )} 
               <img src={CartIcon} alt="cart" />
             </div>
 
             <div className="Cart">
               <img src={ProfileIcon} alt="Profile" />
             </div>
-          </UserSec>
+          </UserSec> */}
 
-          {/* <CartComp isOpen={openCart} closeCart={closeCart} /> */}
         </NavWrap>
       </NavCon>
     </>

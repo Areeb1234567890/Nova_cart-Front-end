@@ -40,6 +40,9 @@ export const NavWrap = styled.div`
       color: orange;
       font-family: Areeb;
     }
+    button {
+      background-color: orange;
+    }
   }
 
   @media (max-width: 500px) {
@@ -64,6 +67,13 @@ export const UserSec = styled.div`
   justify-content: center;
   user-select: none;
   gap: 5px;
+  button {
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
   .Cart {
     height: 40px;
     width: 40px;
