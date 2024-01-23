@@ -42,6 +42,8 @@ export const NavWrap = styled.div`
     }
     button {
       background-color: orange;
+      color: #fff;
+      font-weight: 700;
     }
   }
 
@@ -72,6 +74,7 @@ export const UserSec = styled.div`
     width: 100px;
     border: none;
     border-radius: 2px;
+    font-weight: 600;
     cursor: pointer;
   }
   .Cart {

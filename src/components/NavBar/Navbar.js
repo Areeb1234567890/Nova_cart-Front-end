@@ -7,7 +7,7 @@ import ProfileIcon from "../../assets/Images/ProfileIcon.png";
 const Navbar = () => {
   const location = useLocation();
   return (
-    <>  
+    <>
       <NavCon>
         <NavWrap>
           <Link to="/">
@@ -17,13 +17,6 @@ const Navbar = () => {
           <div className="NavLinks">
             <Link className={location.pathname === "/" ? "active" : ""} to="/">
               <h3>Home</h3>
-            </Link>
-
-            <Link
-              className={location.pathname === "/About" ? "active" : ""}
-              to="/About"
-            >
-              <h3>About</h3>
             </Link>
           </div>
 
@@ -64,7 +57,6 @@ const Navbar = () => {
               <img src={ProfileIcon} alt="Profile" />
             </div>
           </UserSec> */}
-
         </NavWrap>
       </NavCon>
     </>
