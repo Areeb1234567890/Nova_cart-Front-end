@@ -76,6 +76,11 @@ export const UserSec = styled.div`
     border-radius: 2px;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background-color: #ffcd04;
+      color: #fff;
+    }
   }
   .Cart {
     height: 40px;
