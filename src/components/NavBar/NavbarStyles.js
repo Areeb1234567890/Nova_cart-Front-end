@@ -32,11 +32,26 @@ export const NavWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    h3 {
-      font-size: 20px;
-      font-family: Areeb;
+    gap: 15px;
+    input {
+      height: 35px;
+      width: 350px;
+      padding: 0 20px;
+      border-radius: 2px;
+      border: none;
+    }
+    button {
+      height: 35px;
+      width: 100px;
+      background-color: #ffa500;
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      outline: none;
       cursor: pointer;
+      &:hover {
+        background-color: orange;
+      }
     }
   }
 
@@ -59,11 +74,6 @@ export const NavWrap = styled.div`
     }
     .NavLinks {
       gap: 20px;
-      h3 {
-        font-size: 18px;
-        font-family: Areeb;
-        cursor: pointer;
-      }
     }
   }
 `;

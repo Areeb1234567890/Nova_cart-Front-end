@@ -21,7 +21,7 @@ const ProductSec = () => {
         <div className="Product">
           <PImg image={ps5}></PImg>
           <h3>ps5 jail-breack 10/10</h3>
-          <h2 className="Price">$120</h2>
+          <h2 className="Price">$500</h2>
         </div>
         <div className="Product">
           <PImg image={ps5}></PImg>

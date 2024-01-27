@@ -23,6 +23,11 @@ const Navbar = () => {
             <h1 className="Logo">Nova Cart</h1>
           </Link>
 
+          <div className="NavLinks">
+            <input type="text" placeholder="search" />
+            <button>search</button>
+          </div>
+
           {!_token ? (
             <UserSec>
               <Link
