@@ -1,10 +1,12 @@
 import React from "react";
-import Banner from "../../assets/Images/Banner.png";
-import { BannerMain } from "./HeroStyle";
+import ProductSec from "../ProductsSec/ProductSec";
+import Slider from "../slider/Slider";
+
 const Hero = () => {
   return (
     <>
-      <BannerMain image={Banner}></BannerMain>
+      <Slider />
+      <ProductSec />
     </>
   );
 };

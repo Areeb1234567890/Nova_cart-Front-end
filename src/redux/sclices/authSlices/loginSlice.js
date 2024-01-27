@@ -1,21 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoading: false,
-  data: null,
+  loginResponse: null,
 };
 const url = "http://localhost:4000/api/login";
 
-const loginUser = createAsyncThunk("auth/loginUser", async (credentials) => {
-  try {
-    const response = await axios.post(`${url}`, credentials);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
+const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async ({ credentials, navigate }) => {
+    try {
+      console.log({ navigate });
+      const response = await axios.post(`${url}`, credentials);
+      const { user, success, token, msg } = response.data;
+      if (success) {
+        const authUserData = JSON.stringify({
+          token,
+          userName: user.name,
+          userId: user._id,
+          checkAdmin: user.isAdmin,
+        });
+        sessionStorage.setItem("authUser", authUserData);
+        toast.success(msg);
+        navigate("/");
+      }
+
+      return response.data;
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
-});
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -27,7 +45,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.loginResponse = action.payload;
     });
     builder.addCase(loginUser.rejected, (state) => {
       state.isLoading = false;
@@ -35,6 +53,16 @@ const authSlice = createSlice({
   },
 });
 
+export const useLogin = () => {
+  const { loginResponse, isLoading, isloggedIn } = useSelector(
+    (state) => state.auth
+  );
+
+  return {
+    loginResponse,
+    isLoading,
+  };
+};
 export { loginUser };
 
 export default authSlice.reducer;

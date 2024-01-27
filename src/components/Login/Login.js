@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/sclices/authSlices/loginSlice";
 
 const Login = () => {
@@ -15,8 +15,7 @@ const Login = () => {
 
   const handleLogin = (data) => {
     try {
-      dispatch(loginUser(data));
-      navigate("/");
+      dispatch(loginUser({ credentials: data, navigate }));
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -31,6 +30,7 @@ const Login = () => {
     e.preventDefault();
     handleLogin(data);
   };
+
   return (
     <div className="LoginWrap">
       <form

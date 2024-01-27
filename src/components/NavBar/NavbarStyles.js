@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const NavCon = styled.div`
   width: 100%;
-  background-color: #fff;
+  background-color: #343a40;
   position: sticky;
+  z-index: 10;
   top: 0;
   padding: 0 20px;
   left: 0;
@@ -22,6 +23,10 @@ export const NavWrap = styled.div`
   .Logo {
     font-family: Areeb;
     white-space: nowrap;
+    color: #dadada;
+    &:hover {
+      color: #fff;
+    }
   }
   .NavLinks {
     display: flex;
@@ -68,7 +73,7 @@ export const UserSec = styled.div`
   align-items: center;
   justify-content: center;
   user-select: none;
-  gap: 5px;
+  gap: 15px;
   button {
     height: 30px;
     width: 100px;
@@ -83,16 +88,21 @@ export const UserSec = styled.div`
     }
   }
   .Cart {
-    height: 40px;
-    width: 40px;
     position: relative;
-    border-radius: 50%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    padding-bottom: 5px;
+    gap: 5px;
     cursor: pointer;
     &:hover {
-      background-color: #dadada;
+      border-bottom: 2px solid #dadada;
+      h4 {
+        color: #fff;
+      }
+    }
+    h4 {
+      color: #dadada;
     }
     img {
       width: 30px;
@@ -100,8 +110,6 @@ export const UserSec = styled.div`
   }
   @media (max-width: 500px) {
     .Cart {
-      width: 30px;
-      height: 30px;
       img {
         width: 20px;
       }
