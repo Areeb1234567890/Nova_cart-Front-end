@@ -21,7 +21,7 @@ const loginUser = createAsyncThunk(
           token,
           userName: user.name,
           userId: user._id,
-          checkAdmin: user.isAdmin,
+          isAdmin: user.isAdmin,
         });
         sessionStorage.setItem("authUser", authUserData);
         toast.success(msg);

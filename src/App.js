@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "./components/Hero/Hero";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import AddProduct from "./components/AddProduct/AddProduct";
+import UserList from "./components/userList/UserList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Hero />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/admin/addProduct" element={<AddProduct />}></Route>
+          <Route path="/admin/userList" element={<UserList />}></Route>
         </Routes>
       </div>
     </Router>
