@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getUser, useDataUser } from "../../redux/sclices/userSlice/useSlice";
 import { toast } from "react-toastify";
-import "./tableStyle.css";
+import "../userList/tableStyle.css";
 
-const UserList = () => {
+const ProductList = () => {
   const nevigate = useNavigate();
-  const dispatch = useDispatch();
-  const { GetUserResponse } = useDataUser();
   const [userData, setUserData] = useState([]);
   const [searchUser, setSearchUser] = useState("");
-
-  console.log(GetUserResponse);
 
   const handleSearch = async () => {
     if (searchUser !== "") {
@@ -20,20 +14,6 @@ const UserList = () => {
       toast.error("Enter name to search");
     }
   };
-
-  useEffect(() => {
-    const callData = async () => {
-      await dispatch(getUser());
-      setUserData(GetUserResponse?.user);
-    };
-    callData();
-  }, []);
-
-  useEffect(() => {
-    if (GetUserResponse && GetUserResponse.user) {
-      setUserData(GetUserResponse.user);
-    }
-  }, [GetUserResponse]);
 
   return (
     <div>
@@ -51,8 +31,14 @@ const UserList = () => {
               }
             }}
             value={searchUser}
-            placeholder="Search for users"
+            placeholder="Search for Product"
           />
+          <button
+            className="Edit"
+            onClick={() => nevigate("/admin/addProduct")}
+          >
+            Add Products
+          </button>
         </div>
 
         <table border={1} cellPadding={10} cellSpacing={0}>
@@ -60,7 +46,7 @@ const UserList = () => {
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>User E-mail</th>
+              <th>Price</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -74,9 +60,9 @@ const UserList = () => {
                     <td>{Data.email}</td>
                     <td>
                       <button
-                        // onClick={() => {
-                        //   nevigate("/Update/" + Data._id);
-                        // }}
+                        onClick={() => {
+                          nevigate("/Update/" + Data._id);
+                        }}
                         className="Edit"
                       >
                         Edit
@@ -95,4 +81,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default ProductList;

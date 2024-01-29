@@ -109,6 +109,7 @@ const Navbar = () => {
                     <MenuItem
                       onClick={() => {
                         handleClose();
+                        navigate("/admin/productList");
                       }}
                     >
                       Product List
