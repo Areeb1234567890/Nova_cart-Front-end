@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   registerResponse: null,
 };
-const url = "http://localhost:4000/api/register";
+const url = `${process.env.REACT_APP_REGISTER_API_URL}`;
 
 const registerUser = createAsyncThunk(
   "auth/registerUser",

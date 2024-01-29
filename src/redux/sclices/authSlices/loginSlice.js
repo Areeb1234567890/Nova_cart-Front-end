@@ -7,13 +7,12 @@ const initialState = {
   isLoading: false,
   loginResponse: null,
 };
-const url = "http://localhost:4000/api/login";
+const url = `${process.env.REACT_APP_LOGIN_API_URL}`;
 
 const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ credentials, navigate }) => {
     try {
-      console.log({ navigate });
       const response = await axios.post(`${url}`, credentials);
       const { user, success, token, msg } = response.data;
       if (success) {
@@ -54,9 +53,7 @@ const authSlice = createSlice({
 });
 
 export const useLogin = () => {
-  const { loginResponse, isLoading, isloggedIn } = useSelector(
-    (state) => state.auth
-  );
+  const { loginResponse, isLoading } = useSelector((state) => state.auth);
 
   return {
     loginResponse,

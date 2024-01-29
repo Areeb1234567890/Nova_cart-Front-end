@@ -7,11 +7,18 @@ const initialState = {
   isLoading: false,
   GetUserResponse: null,
 };
-const url = "http://localhost:4000/api/getUsers";
+const url = `${process.env.REACT_APP_GET_USER_API_URL}`;
+const _token = sessionStorage.getItem("authUser");
+const { isAdmin, token } = _token ? JSON.parse(_token) : {};
 
 const getUser = createAsyncThunk("auth/getUser", async () => {
   try {
-    const response = await axios.get(`${url}`);
+    const response = await axios.get(`${url}`, {
+      headers: {
+        Authorization: `${token}`,
+        checkAdmin: `${isAdmin}`,
+      },
+    });
     return response.data;
   } catch (error) {
     toast.error(error.response.data.msg);

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getUser, useDataUser } from "../../redux/sclices/userSlice/useSlice";
+import {
+  getUser,
+  useDataUser,
+} from "../../redux/sclices/userSlice/getUserSlice";
 import { toast } from "react-toastify";
 import "./tableStyle.css";
 
@@ -11,8 +14,6 @@ const UserList = () => {
   const { GetUserResponse } = useDataUser();
   const [userData, setUserData] = useState([]);
   const [searchUser, setSearchUser] = useState("");
-
-  console.log(GetUserResponse);
 
   const handleSearch = async () => {
     if (searchUser !== "") {
@@ -24,7 +25,6 @@ const UserList = () => {
   useEffect(() => {
     const callData = async () => {
       await dispatch(getUser());
-      setUserData(GetUserResponse?.user);
     };
     callData();
   }, []);
@@ -86,7 +86,9 @@ const UserList = () => {
                 );
               })
             ) : (
-              <h3>Nothing found :(</h3>
+              <tr>
+                <td>Nothing found :(</td>
+              </tr>
             )}
           </tbody>
         </table>
