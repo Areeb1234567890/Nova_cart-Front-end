@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../userList/tableStyle.css";
+import {
+  getProduct,
+  useDataProduct,
+} from "../../redux/sclices/productSlices/getProduct";
+import { useDispatch } from "react-redux";
 
 const ProductList = () => {
   const nevigate = useNavigate();
+  const dispatch = useDispatch();
+  const { GetProductResponse } = useDataProduct();
   const [userData, setUserData] = useState([]);
   const [searchUser, setSearchUser] = useState("");
 
@@ -14,6 +21,19 @@ const ProductList = () => {
       toast.error("Enter name to search");
     }
   };
+
+  useEffect(() => {
+    const callData = async () => {
+      await dispatch(getProduct());
+    };
+    callData();
+  }, []);
+
+  useEffect(() => {
+    if (GetProductResponse && GetProductResponse.products) {
+      setUserData(GetProductResponse.products);
+    }
+  }, [GetProductResponse]);
 
   return (
     <div>
@@ -47,6 +67,7 @@ const ProductList = () => {
               <th>Id</th>
               <th>Name</th>
               <th>Price</th>
+              <th>Image</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -56,17 +77,20 @@ const ProductList = () => {
                 return (
                   <tr key={index}>
                     <td>{Data._id}</td>
-                    <td>{Data.name}</td>
-                    <td>{Data.email}</td>
+                    <td>{Data.title}</td>
+                    <td>{Data.price}</td>
+                    <td>{Data.image}</td>
                     <td>
                       <button
-                        onClick={() => {
-                          nevigate("/Update/" + Data._id);
-                        }}
-                        className="Edit"
+                        // onClick={() => {
+                        //   nevigate("/Update/" + Data._id);
+                        // }}
+                        className="Edit Table"
                       >
                         Edit
                       </button>
+
+                      <button className="Edit Table Delete">Delete</button>
                     </td>
                   </tr>
                 );

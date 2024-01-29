@@ -13,12 +13,7 @@ const { isAdmin, token } = _token ? JSON.parse(_token) : {};
 
 const getProduct = createAsyncThunk("/getProduct", async () => {
   try {
-    const response = await axios.get(`${url}`, {
-      headers: {
-        Authorization: `${token}`,
-        checkAdmin: `${isAdmin}`,
-      },
-    });
+    const response = await axios.get(`${url}`);
     return response.data;
   } catch (error) {
     toast.error(error.response.data.msg);
