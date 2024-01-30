@@ -8,12 +8,12 @@ const initialState = {
   productResponse: null,
 };
 const url = `${process.env.REACT_APP_ADD_PRODUCT_API_URL}`;
-const _token = sessionStorage.getItem("authUser");
-const { isAdmin, token } = _token ? JSON.parse(_token) : {};
 
 const addProduct = createAsyncThunk(
   "/addProduct",
   async ({ credentials, navigate }) => {
+    const _token = sessionStorage.getItem("authUser");
+    const { isAdmin, token } = _token ? JSON.parse(_token) : {};
     try {
       const response = await axios.post(`${url}`, credentials, {
         headers: {

@@ -98,6 +98,7 @@ const Navbar = () => {
                     TransitionComponent={Fade}
                   >
                     <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Orders</MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();

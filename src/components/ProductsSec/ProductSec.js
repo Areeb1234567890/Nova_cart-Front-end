@@ -5,10 +5,12 @@ import {
   useDataProduct,
 } from "../../redux/sclices/productSlices/getProduct";
 import { useDispatch } from "react-redux";
-import Spinner from "../../assets/Images/spinner.gif";
+import Spinner from "../../assets/Images/Spinner.svg";
+import { useNavigate } from "react-router-dom";
 
 const ProductSec = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { GetProductResponse, isLoading } = useDataProduct();
   const [productData, setProductData] = useState([]);
 
@@ -29,11 +31,28 @@ const ProductSec = () => {
     <>
       <MainContainer>
         {isLoading ? (
-          <img src={Spinner} alt="spinner" className="spinner" />
+          <div className="spinner">
+            <img src={Spinner} alt="spinner" />
+          </div>
         ) : productData && productData.length > 0 ? (
           productData.map((Data, index) => {
             return (
-              <div key={index} className="Product">
+              <div
+                key={index}
+                className="Product"
+                onClick={() => {
+                  navigate(`/productDets/${Data._id}`, {
+                    replace: true,
+                    state: {
+                      image: Data.image,
+                      title: Data.title,
+                      price: Data.price,
+                      description: Data.description,
+                      id: Data.id,
+                    },
+                  });
+                }}
+              >
                 <PImg image={Data.image}></PImg>
                 <h3>{Data.title}</h3>
                 <h2 className="Price">${Data.price}</h2>

@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import AddProduct from "./components/AddProduct/AddProduct";
 import UserList from "./components/userList/UserList";
 import ProductList from "./components/ProductList/ProductList";
+import ProductDets from "./components/ProductDetails/ProductDets";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin/productList" element={<ProductList />}></Route>
           <Route path="/admin/addProduct" element={<AddProduct />}></Route>
           <Route path="/admin/userList" element={<UserList />}></Route>
+          <Route path="/productDets/:id" element={<ProductDets />}></Route>
         </Routes>
       </div>
     </Router>
