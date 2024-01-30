@@ -9,6 +9,10 @@ export const MainContainer = styled.div`
   flex-wrap: wrap;
   gap: 30px;
   margin: 0 auto;
+  .spinner {
+    height: 100px;
+    width: 100px;
+  }
   .Product {
     width: 400px;
     height: 420px;

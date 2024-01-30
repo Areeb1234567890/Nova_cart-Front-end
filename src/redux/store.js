@@ -4,6 +4,7 @@ import registerReducer from "./sclices/authSlices/registerSlice";
 import userReducer from "./sclices/userSlice/getUserSlice";
 import productReducer from "./sclices/productSlices/addProduct";
 import getProductReducer from "./sclices/productSlices/getProduct";
+import deleteProductReducer from "./sclices/productSlices/deleteProduct";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     getUser: userReducer,
     addProduct: productReducer,
     getProduct: getProductReducer,
+    deleteProduct: deleteProductReducer,
   },
 });

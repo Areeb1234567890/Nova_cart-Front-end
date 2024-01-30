@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { MainContainer, PImg } from "./PStyles";
-import ps5 from "../../assets/Images/ps5.jpg";
 import {
   getProduct,
   useDataProduct,
 } from "../../redux/sclices/productSlices/getProduct";
 import { useDispatch } from "react-redux";
+import Spinner from "../../assets/Images/spinner.gif";
 
 const ProductSec = () => {
   const dispatch = useDispatch();
-  const { GetProductResponse } = useDataProduct();
+  const { GetProductResponse, isLoading } = useDataProduct();
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
@@ -25,17 +25,12 @@ const ProductSec = () => {
     }
   }, [GetProductResponse]);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       <MainContainer>
-        {productData && productData.length > 0 ? (
+        {isLoading ? (
+          <img src={Spinner} alt="spinner" className="spinner" />
+        ) : productData && productData.length > 0 ? (
           productData.map((Data, index) => {
             return (
               <div key={index} className="Product">

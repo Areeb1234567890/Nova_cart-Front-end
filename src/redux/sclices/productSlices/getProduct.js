@@ -8,8 +8,6 @@ const initialState = {
   GetProductResponse: null,
 };
 const url = `${process.env.REACT_APP_GET_PRODUCT_API_URL}`;
-const _token = sessionStorage.getItem("authUser");
-const { isAdmin, token } = _token ? JSON.parse(_token) : {};
 
 const getProduct = createAsyncThunk("/getProduct", async () => {
   try {

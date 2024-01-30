@@ -8,10 +8,10 @@ const initialState = {
   GetUserResponse: null,
 };
 const url = `${process.env.REACT_APP_GET_USER_API_URL}`;
-const _token = sessionStorage.getItem("authUser");
-const { isAdmin, token } = _token ? JSON.parse(_token) : {};
 
 const getUser = createAsyncThunk("auth/getUser", async () => {
+  const _token = sessionStorage.getItem("authUser");
+  const { isAdmin, token } = _token ? JSON.parse(_token) : {};
   try {
     const response = await axios.get(`${url}`, {
       headers: {
