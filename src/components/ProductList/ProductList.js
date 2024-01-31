@@ -28,6 +28,7 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const { GetProductResponse } = useDataProduct();
   const [userData, setUserData] = useState([]);
+  const [renderData, setrenderData] = useState(1);
   const [searchUser, setSearchUser] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,6 +45,7 @@ const ProductList = () => {
     try {
       dispatch(deleteProduct({ credentials: Data }));
       setOpen(false);
+      setrenderData(renderData + 1);
     } catch (error) {
       console.error("Delete failed:", error);
     }
@@ -54,7 +56,7 @@ const ProductList = () => {
       await dispatch(getProduct());
     };
     callData();
-  }, []);
+  }, [renderData]);
 
   useEffect(() => {
     if (GetProductResponse && GetProductResponse.products) {

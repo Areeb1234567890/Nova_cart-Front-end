@@ -5,6 +5,7 @@ import userReducer from "./sclices/userSlice/getUserSlice";
 import productReducer from "./sclices/productSlices/addProduct";
 import getProductReducer from "./sclices/productSlices/getProduct";
 import deleteProductReducer from "./sclices/productSlices/deleteProduct";
+import cartReducer from "./sclices/cartSclice/cartSclice";
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     addProduct: productReducer,
     getProduct: getProductReducer,
     deleteProduct: deleteProductReducer,
+    cart: cartReducer,
   },
 });

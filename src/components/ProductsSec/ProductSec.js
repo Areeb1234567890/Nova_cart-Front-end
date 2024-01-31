@@ -48,7 +48,7 @@ const ProductSec = () => {
                       title: Data.title,
                       price: Data.price,
                       description: Data.description,
-                      id: Data.id,
+                      id: Data._id,
                     },
                   });
                 }}

@@ -129,8 +129,8 @@ export const UserSec = styled.div`
 
 export const Count = styled.div`
   position: absolute;
-  top: -3px;
-  right: -5px;
+  top: -10px;
+  right: 28px;
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -145,7 +145,7 @@ export const Count = styled.div`
     font-size: 12px;
   }
   @media (max-width: 500px) {
-    right: -2px;
+    right: 20px;
     top: -6px;
     height: 15px;
     width: 15px;

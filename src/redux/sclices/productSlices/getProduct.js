@@ -45,6 +45,7 @@ export const useDataProduct = () => {
     isLoading,
   };
 };
+
 export { getProduct };
 
 export default getProductSlice.reducer;

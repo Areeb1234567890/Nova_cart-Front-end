@@ -44,7 +44,7 @@ export const ProductInfoSec = styled.div`
   }
   .dets {
     height: 30px;
-    width: 100%;
+    width: 70%;
     border-radius: 15px;
     text-align: center;
     padding-top: 3px;
@@ -62,13 +62,14 @@ export const ProductInfoSec = styled.div`
     gap: 20px;
     width: 100%;
     .Btn {
-      width: 100%;
-      height: 45px;
+      width: 70%;
+      height: 40px;
       background-color: #343a40 !important;
       color: #fff !important;
       border-radius: 5px;
       border: none;
       cursor: pointer;
+      font-size: 16px;
       font-weight: 600;
       &:hover {
         background-color: #64707c !important;

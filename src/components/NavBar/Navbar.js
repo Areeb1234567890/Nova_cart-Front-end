@@ -7,6 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { toast } from "react-toastify";
+import { useCart } from "../../redux/sclices/cartSclice/cartSclice";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -19,8 +20,11 @@ const Navbar = () => {
   };
   const navigate = useNavigate();
   const location = useLocation();
+  const cart = useCart();
   const _token = sessionStorage.getItem("authUser");
   const { isAdmin } = _token ? JSON.parse(_token) : {};
+
+  console.log(cart);
 
   const logout = () => {
     sessionStorage.removeItem("authUser");
@@ -62,16 +66,16 @@ const Navbar = () => {
               <div
                 className="Cart"
                 onClick={() => {
-                  // handleClickCart();
+                  navigate("/cart");
                 }}
               >
-                {/* {Cart && Cart.length > 0 ? (
+                {cart && cart.length > 0 ? (
                   <Count>
-                    <span>{Cart.length}</span>
+                    <span>{cart.length}</span>
                   </Count>
                 ) : (
                   ""
-                )} */}
+                )}
                 <img src={CartIcon} alt="cart" />
                 <h4>Cart</h4>
               </div>

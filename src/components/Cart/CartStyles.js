@@ -1,0 +1,142 @@
+import styled from "styled-components";
+
+export const CartWrapper = styled.div`
+  max-width: 1366px;
+  height: 89vh;
+  margin: 0 auto;
+  padding: 30px 0 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50px;
+`;
+export const ProductCart = styled.div`
+  width: 65%;
+  height: 100%;
+  border-radius: 15px;
+  border: 2px solid #dadada;
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    padding: 0 30px 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #33393f;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    .img {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 5px;
+      img {
+        width: 40px;
+      }
+      h3 {
+        color: #fff;
+        font-size: 25px;
+      }
+    }
+  }
+  .productsSec {
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 20px 15px;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    .Product {
+      width: 100%;
+      height: 150px;
+      border: 2px solid #dadada;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 10px;
+      #Pwrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .ProductImage {
+          height: 130px;
+          width: 150px;
+          border-radius: 8px;
+        }
+        h3 {
+          font-size: 15px;
+          font-family: Regular;
+          color: #343a40;
+        }
+        span {
+          opacity: 0.5;
+          font-weight: 600;
+          padding-top: 10px;
+        }
+      }
+      .Counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .op {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          border: 2px solid #dadada;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          span {
+            font-size: 20px;
+          }
+        }
+      }
+      .price {
+        span {
+          font-size: 25px;
+          font-weight: 700;
+          font-family: Regular;
+        }
+      }
+      .Actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        .checkBox {
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+`;
+export const CheckOut = styled.div`
+  width: 35%;
+  height: 60%;
+  border-radius: 30px;
+  background-color: #f3f3f9;
+  padding: 15px 20px;
+  .btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #343a40;
+    color: #fff;
+    font-weight: 700;
+  }
+`;
