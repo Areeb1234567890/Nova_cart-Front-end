@@ -96,6 +96,7 @@ export const ProductCart = styled.div`
           display: flex;
           align-items: center;
           justify-content: center;
+          user-select: none;
           cursor: pointer;
           span {
             font-size: 20px;
@@ -128,7 +129,57 @@ export const CheckOut = styled.div`
   height: 60%;
   border-radius: 30px;
   background-color: #f3f3f9;
-  padding: 15px 20px;
+  padding: 35px 20px 15px;
+
+  h2 {
+    font-family: Regular;
+    padding-bottom: 15px;
+  }
+  .PromoSec {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #dadada;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 5px 5px 20px;
+    margin-bottom: 18px;
+    input {
+      height: 100%;
+      width: 60%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: #111;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: Regular;
+    }
+    .primary {
+      width: 30% !important;
+      height: 100% !important;
+      border-radius: 25px !important;
+    }
+  }
+
+  .billing {
+    padding: 25px 0 15px;
+    .dets {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      .sec {
+        color: #babacd;
+        font-family: Regular;
+      }
+      .primary {
+        font-family: Regular;
+        font-size: 18px;
+      }
+    }
+  }
   .btn {
     width: 100%;
     height: 40px;
@@ -138,5 +189,8 @@ export const CheckOut = styled.div`
     background-color: #343a40;
     color: #fff;
     font-weight: 700;
+    &:hover {
+      background-color: #64707c;
+    }
   }
 `;

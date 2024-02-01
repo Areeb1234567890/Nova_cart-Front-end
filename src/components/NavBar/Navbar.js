@@ -24,8 +24,6 @@ const Navbar = () => {
   const _token = sessionStorage.getItem("authUser");
   const { isAdmin } = _token ? JSON.parse(_token) : {};
 
-  console.log(cart);
-
   const logout = () => {
     sessionStorage.removeItem("authUser");
     navigate("/login");

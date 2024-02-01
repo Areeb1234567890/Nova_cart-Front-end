@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   getUser,
@@ -9,7 +8,6 @@ import { toast } from "react-toastify";
 import "./tableStyle.css";
 
 const UserList = () => {
-  const nevigate = useNavigate();
   const dispatch = useDispatch();
   const { GetUserResponse } = useDataUser();
   const [userData, setUserData] = useState([]);
