@@ -4,13 +4,25 @@ import CartIcon from "../../assets/Images/Cart.png";
 import DeleteIcon from "../../assets/Images/DeleteIcon.png";
 import Spinner from "../../assets/Images/Spinner.svg";
 import { useCart } from "../../redux/sclices/cartSclice/cartSclice";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../../redux/sclices/cartSclice/cartSclice";
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [count, setCount] = useState(1);
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
   const cart = useCart();
+
+  const TruncateText = ({ text, limit }) => {
+    const truncate = (text, limit) => {
+      const words = text.split(" ");
+      if (words.length > limit) {
+        return words.slice(0, limit).join(" ") + "...";
+      }
+      return text;
+    };
+
+    return <>{truncate(text, limit)}</>;
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,23 +30,8 @@ const Cart = () => {
     }, 1000);
   }, [cart]);
 
-  const handleCheckboxClick = (index, { price }) => {
-    const updatedSelectedItems = [...selectedItems];
-
-    // Toggle the selected status for the clicked item
-    updatedSelectedItems[index] = !updatedSelectedItems[index];
-
-    // Calculate the total price of selected items
-    const newTotal = updatedSelectedItems.reduce((sum, isSelected, idx) => {
-      return isSelected ? sum + cart[idx].price : sum;
-    }, 0);
-
-    setTotal(newTotal);
-    setSelectedItems(updatedSelectedItems);
-  };
-
   const deleteProduct = (id) => {
-    console.log(id, "frm del");
+    dispatch(deleteFromCart(id));
   };
 
   return (
@@ -64,52 +61,34 @@ const Cart = () => {
                           className="ProductImage"
                         />
                         <div>
-                          <h3>{data.title}</h3>
-                          <span>Sony</span>
+                          <h3>
+                            <TruncateText text={data.title} limit={6} />
+                          </h3>
+                          <span>{data.brand}</span>
                         </div>
                       </div>
 
                       <div className="Counter">
-                        <div
-                          className="op"
-                          onClick={() => {
-                            if (count > 1) setCount(count - 1);
-                          }}
-                        >
+                        <div className="op">
                           <span>-</span>
                         </div>
-                        <h3>{count}</h3>
-                        <div
-                          className="op"
-                          onClick={() => {
-                            setCount(count + 1);
-                          }}
-                        >
+                        <h3>1</h3>
+                        <div className="op">
                           <span>+</span>
                         </div>
                       </div>
 
                       <div className="price">
-                        <span>${count * data.price}</span>
+                        <span>${data.price}</span>
                       </div>
 
                       <div className="Actions">
-                        <input
-                          type="checkbox"
-                          name="checkBox"
-                          checked={selectedItems[index]}
-                          onChange={() =>
-                            handleCheckboxClick(index, {
-                              price: count * data.price,
-                            })
-                          }
-                          className="checkBox"
-                        />
                         <img
                           src={DeleteIcon}
                           alt="Delete"
+                          className="Remove"
                           onClick={() => {
-                            deleteProduct(data._id);
+                            deleteProduct(data.id);
                           }}
                           style={{ cursor: "pointer" }}
                         />
@@ -136,7 +115,7 @@ const Cart = () => {
             <div className="billing">
               <div className="dets">
                 <h3 className="sec">Subtotal</h3>
-                <h3 className="sec">${total}</h3>
+                <h3 className="sec">$1500</h3>
               </div>
               <div className="dets">
                 <h3 className="sec">Discount</h3>
@@ -144,7 +123,7 @@ const Cart = () => {
               </div>
               <div className="dets">
                 <h3 className="primary">Total</h3>
-                <h3 className="primary">${total}</h3>
+                <h3 className="primary">$1500</h3>
               </div>
             </div>
             <button className="btn">Continue to checkout</button>

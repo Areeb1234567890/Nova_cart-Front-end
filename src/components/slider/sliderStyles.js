@@ -5,14 +5,14 @@ export const Wrapper = styled.div`
   height: 500px;
   margin: 0 auto;
   margin-top: 50px;
-  div {
-    width: 100%;
-    height: 100%;
+  .Container {
+    width: 1366px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  div > .wrap {
+  .Container > .wrap {
     width: 100%;
     height: 100%;
     display: flex;
@@ -21,8 +21,8 @@ export const Wrapper = styled.div`
     background-color: #343a40;
   }
   .wrap > img {
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
   }
 
   .slick-prev {

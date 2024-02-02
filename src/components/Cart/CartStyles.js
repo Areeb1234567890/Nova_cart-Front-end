@@ -114,10 +114,16 @@ export const ProductCart = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+          background-color: #dadada;
+        }
         .checkBox {
-          height: 20px;
-          width: 20px;
+          height: 15px !important;
+          width: 15px !important;
           cursor: pointer;
         }
       }

@@ -16,22 +16,25 @@ const HeroSlider = () => {
     autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    lazyLoad: false,
   };
   return (
     <>
       <Wrapper>
         <Slider {...settings}>
-          <div>
+          <div className="Container">
             <div className="wrap">
               <img src={bg1} alt="Slide 1" />
             </div>
           </div>
-          <div>
+
+          <div className="Container">
             <div className="wrap">
               <img src={bg2} alt="Slide 2" />
             </div>
           </div>
-          <div>
+
+          <div className="Container">
             <div className="wrap">
               <img src={bg3} alt="Slide 3" />
             </div>

@@ -13,6 +13,8 @@ const AddProduct = () => {
     description: "",
     price: "",
     file: "",
+    quantity: "",
+    brand: "",
   };
   const [postData, setPostData] = useState(Value);
 
@@ -22,6 +24,8 @@ const AddProduct = () => {
     formData.append("title", postData.title);
     formData.append("description", postData.description);
     formData.append("price", postData.price);
+    formData.append("brand", postData.brand);
+    formData.append("quantity", postData.quantity);
     formData.append("file", postData.file);
     try {
       dispatch(addProduct({ credentials: formData, navigate }));
@@ -67,6 +71,24 @@ const AddProduct = () => {
           name="price"
           type="text"
           placeholder="Enter price"
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        <input
+          className="Post-Input"
+          name="quantity"
+          type="text"
+          placeholder="Enter quantity stock"
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        <input
+          className="Post-Input"
+          name="brand"
+          type="text"
+          placeholder="Enter Brand name"
           onChange={(e) => {
             inputHandler(e);
           }}

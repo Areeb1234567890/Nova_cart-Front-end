@@ -42,27 +42,56 @@ export const ProductInfoSec = styled.div`
     font-size: 25px;
     font-weight: 400;
   }
-  .dets {
-    height: 30px;
-    width: 70%;
-    border-radius: 15px;
-    text-align: center;
-    padding-top: 3px;
-    background-color: #dadada;
-    margin-bottom: 30px;
-    p {
-      font-size: 20px;
-      font-weight: 500;
+  .stockValues {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    .Stock {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      h3 {
+        font-size: 20px;
+        text-decoration: underline;
+        font-family: Regular;
+      }
+      span {
+        font-family: Regular;
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+    .Counter {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      .op {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        border: 2px solid #dadada;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        cursor: pointer;
+        span {
+          font-size: 20px;
+        }
+      }
     }
   }
+
   .ButtonDiv {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
     width: 100%;
+    gap: 20px;
     .Btn {
-      width: 70%;
+      width: 50%;
       height: 40px;
       background-color: #343a40 !important;
       color: #fff !important;
@@ -73,6 +102,12 @@ export const ProductInfoSec = styled.div`
       font-weight: 600;
       &:hover {
         background-color: #64707c !important;
+      }
+    }
+    .buy {
+      background-color: rgb(236, 180, 76) !important;
+      &:hover {
+        background-color: orange !important;
       }
     }
   }

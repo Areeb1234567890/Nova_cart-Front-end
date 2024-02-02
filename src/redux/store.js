@@ -6,6 +6,7 @@ import productReducer from "./sclices/productSlices/addProduct";
 import getProductReducer from "./sclices/productSlices/getProduct";
 import deleteProductReducer from "./sclices/productSlices/deleteProduct";
 import cartReducer from "./sclices/cartSclice/cartSclice";
+import orderProductReducer from "./sclices/orderSclice/orderProduct";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     getProduct: getProductReducer,
     deleteProduct: deleteProductReducer,
     cart: cartReducer,
+    order: orderProductReducer,
   },
 });

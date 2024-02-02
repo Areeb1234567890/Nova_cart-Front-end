@@ -48,6 +48,8 @@ const ProductSec = () => {
                       title: Data.title,
                       price: Data.price,
                       description: Data.description,
+                      brand: Data.brand,
+                      quantity: Data.qty,
                       id: Data._id,
                     },
                   });

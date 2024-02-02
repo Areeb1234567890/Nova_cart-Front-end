@@ -18,6 +18,17 @@ const cartSlice = createSlice({
         toast.info("Already added!!");
       }
     },
+    deleteFromCart: (state, action) => {
+      const productIdToDelete = action.payload;
+      const indexToDelete = state.findIndex(
+        (product) => product.id === productIdToDelete
+      );
+
+      if (indexToDelete !== -1) {
+        state.splice(indexToDelete, 1);
+        toast.success("Deleted from cart successfully");
+      }
+    },
   },
 });
 
@@ -26,5 +37,5 @@ export const useCart = () => {
   return cart;
 };
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,12 +1,10 @@
 @font-face {
   font-family: "Areeb";
   src: url(./assets/fonts/ChauPhilomeneOne-Regular.ttf) format("truetype");
-  /* Add additional font formats (e.g., woff, woff2) as needed */
 }
 @font-face {
   font-family: "Regular";
   src: url(./assets/fonts/Ubuntu-Regular.ttf) format("truetype");
-  /* Add additional font formats (e.g., woff, woff2) as needed */
 }
 
 * {
