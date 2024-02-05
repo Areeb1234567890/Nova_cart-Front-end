@@ -21,8 +21,8 @@ export const Wrapper = styled.div`
     background-color: #343a40;
   }
   .wrap > img {
-    width: 60%;
-    height: 60%;
+    width: 70%;
+    height: 80%;
   }
 
   .slick-prev {

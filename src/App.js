@@ -10,6 +10,8 @@ import ProductList from "./components/ProductList/ProductList";
 import ProductDets from "./components/ProductDetails/ProductDets";
 import AddressDets from "./components/AdressDets/AddressDets";
 import Cart from "./components/Cart/Cart";
+import CartOrder from "./components/CartCheckout/CartOrder";
+import Order from "./components/Orders/Order";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/adminOrders" element={<Order />}></Route>
+          <Route path="/cartCheckout" element={<CartOrder />}></Route>
           <Route path="/adressDetails" element={<AddressDets />}></Route>
           <Route path="/admin/productList" element={<ProductList />}></Route>
           <Route path="/admin/addProduct" element={<AddProduct />}></Route>

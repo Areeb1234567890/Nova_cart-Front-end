@@ -6,10 +6,13 @@ import Spinner from "../../assets/Images/Spinner.svg";
 import { useCart } from "../../redux/sclices/cartSclice/cartSclice";
 import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../../redux/sclices/cartSclice/cartSclice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [cartAmount, setCartAmount] = useState();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useCart();
 
   const TruncateText = ({ text, limit }) => {
@@ -25,6 +28,13 @@ const Cart = () => {
   };
 
   useEffect(() => {
+    const productPrices = cart.map((product) => product.price * product.count);
+    const totalCartAmount = productPrices.reduce(
+      (acc, price) => acc + price,
+      0
+    );
+    setCartAmount(totalCartAmount);
+
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -69,17 +79,12 @@ const Cart = () => {
                       </div>
 
                       <div className="Counter">
-                        <div className="op">
-                          <span>-</span>
-                        </div>
-                        <h3>1</h3>
-                        <div className="op">
-                          <span>+</span>
-                        </div>
+                        <h3 style={{ fontFamily: "Regular" }}>Qty:</h3>
+                        <h3>{data.count}</h3>
                       </div>
 
                       <div className="price">
-                        <span>${data.price}</span>
+                        <span>${data.price * data.count}</span>
                       </div>
 
                       <div className="Actions">
@@ -115,7 +120,7 @@ const Cart = () => {
             <div className="billing">
               <div className="dets">
                 <h3 className="sec">Subtotal</h3>
-                <h3 className="sec">$1500</h3>
+                <h3 className="sec">${cartAmount}</h3>
               </div>
               <div className="dets">
                 <h3 className="sec">Discount</h3>
@@ -123,10 +128,29 @@ const Cart = () => {
               </div>
               <div className="dets">
                 <h3 className="primary">Total</h3>
-                <h3 className="primary">$1500</h3>
+                <h3 className="primary">${cartAmount}</h3>
               </div>
             </div>
-            <button className="btn">Continue to checkout</button>
+
+            <button
+              className="btn"
+              onClick={() => {
+                if (cart.length > 0) {
+                  navigate(`/cartCheckout`, {
+                    replace: true,
+                    state: {
+                      cart: cart,
+                      total: cartAmount,
+                      productsIds: cart.map((product) => product.id),
+                    },
+                  });
+                } else {
+                  alert("No items in cart");
+                }
+              }}
+            >
+              Continue to checkout
+            </button>
           </CheckOut>
         </CartWrapper>
       )}

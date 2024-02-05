@@ -166,6 +166,8 @@ export const CheckOut = styled.div`
       width: 30% !important;
       height: 100% !important;
       border-radius: 25px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
     }
   }
 

@@ -13,6 +13,7 @@ const ProductDets = () => {
     location.state;
   const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(1);
+  const _token = sessionStorage.getItem("authUser");
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +22,7 @@ const ProductDets = () => {
   }, []);
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id, title, price, image, description, brand }));
+    dispatch(addToCart({ id, title, price, image, description, brand, count }));
   };
 
   return (
@@ -70,6 +71,7 @@ const ProductDets = () => {
               <div className="ButtonDiv">
                 <button
                   className="Btn"
+                  disabled={!_token}
                   onClick={() => {
                     handleAddToCart();
                   }}
@@ -78,6 +80,7 @@ const ProductDets = () => {
                 </button>
                 <button
                   className="Btn buy"
+                  disabled={!_token}
                   onClick={() => {
                     navigate(`/adressDetails`, {
                       replace: true,

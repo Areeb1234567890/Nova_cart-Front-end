@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { NavWrap, NavCon, UserSec, Count } from "./NavbarStyles";
+import React, { useEffect, useState } from "react";
+import {
+  NavWrap,
+  NavCon,
+  UserSec,
+  Count,
+  Count2,
+  Count3,
+} from "./NavbarStyles";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CartIcon from "../../assets/Images/Cart.png";
 import ProfileIcon from "../../assets/Images/ProfileIcon.png";
@@ -8,8 +15,19 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { toast } from "react-toastify";
 import { useCart } from "../../redux/sclices/cartSclice/cartSclice";
+import { useDispatch } from "react-redux";
+import {
+  getOrder,
+  useOrderData,
+} from "../../redux/sclices/orderSclice/getOrder";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const { GetOrderResponse } = useOrderData();
+
+  useEffect(() => {
+    dispatch(getOrder());
+  }, []);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -61,22 +79,26 @@ const Navbar = () => {
             </UserSec>
           ) : (
             <UserSec>
-              <div
-                className="Cart"
-                onClick={() => {
-                  navigate("/cart");
-                }}
-              >
-                {cart && cart.length > 0 ? (
-                  <Count>
-                    <span>{cart.length}</span>
-                  </Count>
-                ) : (
-                  ""
-                )}
-                <img src={CartIcon} alt="cart" />
-                <h4>Cart</h4>
-              </div>
+              {isAdmin === true ? (
+                ""
+              ) : (
+                <div
+                  className="Cart"
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                >
+                  {cart && cart.length > 0 ? (
+                    <Count>
+                      <span>{cart.length}</span>
+                    </Count>
+                  ) : (
+                    ""
+                  )}
+                  <img src={CartIcon} alt="cart" />
+                  <h4>Cart</h4>
+                </div>
+              )}
 
               {isAdmin === true ? (
                 <>
@@ -86,6 +108,15 @@ const Navbar = () => {
                     aria-haspopup="true"
                     onClick={handleClick}
                   >
+                    {GetOrderResponse?.orders &&
+                    GetOrderResponse?.orders.length > 0 ? (
+                      <Count2>
+                        <span>{GetOrderResponse.orders.length}</span>
+                      </Count2>
+                    ) : (
+                      ""
+                    )}
+
                     <img src={ProfileIcon} alt="Profile" />
                     <h4>Admin</h4>
                   </div>
@@ -100,7 +131,22 @@ const Navbar = () => {
                     TransitionComponent={Fade}
                   >
                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Orders</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        navigate("/adminOrders");
+                      }}
+                    >
+                      Orders
+                      {GetOrderResponse?.orders &&
+                      GetOrderResponse?.orders.length > 0 ? (
+                        <Count3>
+                          <span>{GetOrderResponse.orders.length}</span>
+                        </Count3>
+                      ) : (
+                        ""
+                      )}
+                    </MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();
@@ -149,6 +195,7 @@ const Navbar = () => {
                     TransitionComponent={Fade}
                   >
                     <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>My Orders</MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();

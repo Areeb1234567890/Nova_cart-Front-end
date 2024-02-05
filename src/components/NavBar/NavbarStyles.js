@@ -154,3 +154,59 @@ export const Count = styled.div`
     }
   }
 `;
+
+export const Count2 = styled.div`
+  position: absolute;
+  top: -7px;
+  right: 48px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: orange;
+  border: 2px solid orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  @media (max-width: 500px) {
+    right: 20px;
+    top: -6px;
+    height: 15px;
+    width: 15px;
+    span {
+      font-size: 8px;
+    }
+  }
+`;
+
+export const Count3 = styled.div`
+  position: absolute;
+  top: 11px;
+  right: 20px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: orange;
+  border: 2px solid orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  @media (max-width: 500px) {
+    right: 20px;
+    top: -6px;
+    height: 15px;
+    width: 15px;
+    span {
+      font-size: 8px;
+    }
+  }
+`;

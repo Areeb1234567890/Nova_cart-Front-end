@@ -6,20 +6,26 @@ import { useDispatch } from "react-redux";
 import { orderProduct } from "../../redux/sclices/orderSclice/orderProduct";
 import Spinner from "../../assets/Images/Spinner.svg";
 
-const AddressDets = () => {
+const CartOrder = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
-  const { image, title, price, id, quantity } = location.state;
+  const { cart, total, productsIds } = location.state;
   const _token = sessionStorage.getItem("authUser");
   const { userId } = _token ? JSON.parse(_token) : {};
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   const Value = {
-    productId: id,
+    productId: productsIds,
     userId: userId,
-    orderQuantity: quantity,
-    totalPrice: quantity * price,
+    orderQuantity: cart.length,
+    totalPrice: total,
     house: "",
     street: "",
     city: "",
@@ -38,6 +44,7 @@ const AddressDets = () => {
   };
 
   const inputHandler = (e) => {
+    console.log(postData);
     const { name } = e.target;
     if (name === "file") {
       const file = e.target.files[0];
@@ -47,12 +54,6 @@ const AddressDets = () => {
       setPostData({ ...postData, [name]: value });
     }
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
 
   return (
     <>
@@ -120,41 +121,53 @@ const AddressDets = () => {
             </button>
           </form>
 
-          <div className="orderDets">
-            <h2 style={{ fontFamily: "Regular", paddingBottom: "15px" }}>
-              Order Summary
-            </h2>
-            <hr />
-            <div className="product">
-              <img src={image} alt="pImage" />
-              <div>
-                <h3 style={{ fontFamily: "Regular", marginBottom: "10px" }}>
-                  {title}
-                </h3>
-                <span
-                  style={{
-                    fontFamily: "Regular",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                  }}
-                >
-                  ${price}
-                </span>
-              </div>
+          <div className="productsDets">
+            <div>
+              <h2 style={{ fontFamily: "Regular", paddingBottom: "15px" }}>
+                Order Summary
+              </h2>
+              <hr />
             </div>
+
+            <div className="productsData">
+              {cart &&
+                cart.map((data, index) => {
+                  return (
+                    <div className="products" key={index}>
+                      <img src={data.image} alt="pImage" />
+                      <div>
+                        <h3
+                          style={{
+                            fontFamily: "Regular",
+                            marginBottom: "10px",
+                          }}
+                        >
+                          {data.title}
+                        </h3>
+                        <span
+                          style={{
+                            fontFamily: "Regular",
+                            fontSize: "20px",
+                            fontWeight: "700",
+                          }}
+                        >
+                          ${data.price}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+
             <hr />
             <div className="payment">
               <div className="dets">
-                <h3 className="sec">Orignal price</h3>
-                <h3 className="sec">${price}</h3>
-              </div>
-              <div className="dets">
                 <h3 className="sec">Quantity</h3>
-                <h3 className="sec">{quantity}</h3>
+                <h3 className="sec">{cart?.length}</h3>
               </div>
               <div className="dets">
                 <h3 className="sec">Subtotal</h3>
-                <h3 className="sec">${quantity * price}</h3>
+                <h3 className="sec">${total}</h3>
               </div>
               <div className="dets">
                 <h3 className="sec">Discount</h3>
@@ -163,7 +176,7 @@ const AddressDets = () => {
               <hr />
               <div className="dets total">
                 <h3 className="primary">Total</h3>
-                <h3 className="primary">${quantity * price}</h3>
+                <h3 className="primary">${total}</h3>
               </div>
             </div>
           </div>
@@ -173,4 +186,4 @@ const AddressDets = () => {
   );
 };
 
-export default AddressDets;
+export default CartOrder;

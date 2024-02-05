@@ -44,6 +44,7 @@ const AddProduct = () => {
       setPostData({ ...postData, [name]: value });
     }
   };
+  
   return (
     <div className="PostCon" onSubmit={(e) => Submithandler(e)}>
       <h1>Add a New Product</h1>

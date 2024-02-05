@@ -13,7 +13,6 @@ const orderProduct = createAsyncThunk(
   async ({ credentials, navigate }) => {
     const _token = sessionStorage.getItem("authUser");
     const { isAdmin, token } = _token ? JSON.parse(_token) : {};
-    console.log(credentials , "frm sclice")
     try {
       const response = await axios.post(`${url}`, credentials, {
         headers: {
