@@ -134,7 +134,7 @@ const Navbar = () => {
                     <MenuItem
                       onClick={() => {
                         handleClose();
-                        navigate("/adminOrders");
+                        navigate("/admin/orders");
                       }}
                     >
                       Orders
