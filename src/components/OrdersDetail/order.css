@@ -1,0 +1,69 @@
+.main {
+  max-width: 1366px;
+  height: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.Details {
+  width: 50%;
+  height: 100%;
+  border: 2px solid #dadada;
+  padding: 20px 20px;
+  border-radius: 15px;
+}
+.Address {
+  padding-bottom: 30px;
+}
+.user {
+  padding-top: 30px;
+}
+.addets {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 30px;
+}
+.addets > div > h3 {
+  font-family: Regular;
+  padding-bottom: 10px;
+}
+.addets > div > .data {
+  height: 30px;
+  width: 180px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  border-radius: 4px;
+  font-family: Regular;
+  font-weight: bold;
+  background-color: #f3f3f9;
+}
+.Products {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.wrapperP {
+  width: 80%;
+  max-height: 100%;
+  border: 2px solid #dadada;
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+.ProductsDisplay {
+  max-height: 65%;
+  overflow-y: scroll;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.Price {
+  height: 35%;
+}

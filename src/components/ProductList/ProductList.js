@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Spinner from "../../assets/Images/Spinner.svg";
 import {
   getProduct,
   useDataProduct,
@@ -28,6 +29,7 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const { GetProductResponse } = useDataProduct();
   const [userData, setUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [renderData, setrenderData] = useState(1);
   const [searchUser, setSearchUser] = useState("");
   const [open, setOpen] = useState(false);
@@ -52,6 +54,12 @@ const ProductList = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
     const callData = async () => {
       await dispatch(getProduct());
     };
@@ -66,108 +74,117 @@ const ProductList = () => {
 
   return (
     <div>
-      <div className="userTable">
-        <div className="Top-Action">
-          <input
-            className="Search"
-            type="text"
-            onChange={(e) => {
-              setSearchUser(e.target.value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              }
-            }}
-            value={searchUser}
-            placeholder="Search for Product"
-          />
-          <button
-            className="Edit"
-            onClick={() => nevigate("/admin/addProduct")}
-          >
-            Add Products
-          </button>
+      {isLoading ? (
+        <div className="spinner">
+          <img src={Spinner} alt="spinner" />
         </div>
+      ) : (
+        <div className="userTable">
+          <div className="Top-Action">
+            <input
+              className="Search"
+              type="text"
+              onChange={(e) => {
+                setSearchUser(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              value={searchUser}
+              placeholder="Search for Product"
+            />
+            <button
+              className="Edit"
+              onClick={() => nevigate("/admin/addProduct")}
+            >
+              Add Products
+            </button>
+          </div>
 
-        <table border={1} cellPadding={10} cellSpacing={0}>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userData && userData.length > 0 ? (
-              userData.map((Data, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{Data._id}</td>
-                    <td>{Data.title}</td>
-                    <td>{Data.price}</td>
-                    <td>{Data.image}</td>
-                    <td>
-                      <button className="Edit Table">Edit</button>
-
-                      <button
-                        className="Edit Table Delete"
-                        onClick={handleOpen}
-                      >
-                        Delete
-                      </button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style} className="ModalBody">
-                          <Typography
-                            id="modal-modal-title"
-                            variant="h6"
-                            component="h2"
-                          >
-                            Are You Sure?
-                          </Typography>
-                          <Typography
-                            id="modal-modal-description"
-                            sx={{ mt: 2 }}
-                          >
-                            If you delete the product it will not be restored!!
-                          </Typography>
-                          <div className="buttons">
-                            <Button
-                              className="Edit Table"
-                              onClick={handleClose}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              className="Edit Table Delete"
-                              onClick={() => {
-                                handleDelete(Data._id);
-                              }}
-                            >
-                              Yes
-                            </Button>
-                          </div>
-                        </Box>
-                      </Modal>
-                    </td>
-                  </tr>
-                );
-              })
-            ) : (
+          <table border={1} cellPadding={10} cellSpacing={0}>
+            <thead>
               <tr>
-                <td>Nothing found :(</td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {userData && userData.length > 0 ? (
+                userData.map((Data, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{Data._id}</td>
+                      <td>{Data.title}</td>
+                      <td>{Data.price}</td>
+                      <td>{Data.image}</td>
+                      <td>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <button className="Edit Table">Edit</button>
+
+                          <button
+                            className="Edit Table Delete"
+                            onClick={handleOpen}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                        <Modal
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                        >
+                          <Box sx={style} className="ModalBody">
+                            <Typography
+                              id="modal-modal-title"
+                              variant="h6"
+                              component="h2"
+                            >
+                              Are You Sure?
+                            </Typography>
+                            <Typography
+                              id="modal-modal-description"
+                              sx={{ mt: 2 }}
+                            >
+                              If you delete the product it will not be
+                              restored!!
+                            </Typography>
+                            <div className="buttons">
+                              <Button
+                                className="Edit Table"
+                                onClick={handleClose}
+                              >
+                                Cancel
+                              </Button>
+                              <Button
+                                className="Edit Table Delete"
+                                onClick={() => {
+                                  handleDelete(Data._id);
+                                }}
+                              >
+                                Yes
+                              </Button>
+                            </div>
+                          </Box>
+                        </Modal>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td>Nothing found :(</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

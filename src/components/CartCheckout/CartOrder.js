@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { orderProduct } from "../../redux/sclices/orderSclice/orderProduct";
+import { clearCart } from "../../redux/sclices/cartSclice/cartSclice";
 import Spinner from "../../assets/Images/Spinner.svg";
 
 const CartOrder = () => {
@@ -38,6 +39,7 @@ const CartOrder = () => {
     e.preventDefault();
     try {
       dispatch(orderProduct({ credentials: postData, navigate }));
+      dispatch(clearCart());
     } catch (error) {
       console.error(error);
     }

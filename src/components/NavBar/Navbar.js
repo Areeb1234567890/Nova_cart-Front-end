@@ -40,7 +40,15 @@ const Navbar = () => {
   const location = useLocation();
   const cart = useCart();
   const _token = sessionStorage.getItem("authUser");
-  const { isAdmin } = _token ? JSON.parse(_token) : {};
+  const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
+  const [searchUser, setSearchUser] = useState("");
+
+  const handleSearch = () => {
+    if (searchUser !== "") {
+    } else {
+      toast.error("Enter product name to search");
+    }
+  };
 
   const logout = () => {
     sessionStorage.removeItem("authUser");
@@ -57,7 +65,19 @@ const Navbar = () => {
           </Link>
 
           <div className="NavLinks">
-            <input type="text" placeholder="search" />
+            <input
+              type="text"
+              placeholder="Search product"
+              onChange={(e) => {
+                setSearchUser(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              value={searchUser}
+            />
             <button>search</button>
           </div>
 
@@ -195,7 +215,13 @@ const Navbar = () => {
                     TransitionComponent={Fade}
                   >
                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>My Orders</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                      }}
+                    >
+                      My Orders
+                    </MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();

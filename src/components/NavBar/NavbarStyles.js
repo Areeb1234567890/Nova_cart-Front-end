@@ -39,18 +39,21 @@ export const NavWrap = styled.div`
       padding: 0 20px;
       border-radius: 2px;
       border: none;
+      font-family: Regular;
     }
     button {
       height: 35px;
       width: 100px;
-      background-color: #ffa500;
+      background-color: orange;
       color: #fff;
       font-weight: 500;
       border: none;
+      transition: background-color 0.2s ease-in-out;
       outline: none;
+      border-radius: 2px;
       cursor: pointer;
       &:hover {
-        background-color: orange;
+        background-color: #f9cd7b;
       }
     }
   }

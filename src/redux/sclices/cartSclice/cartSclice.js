@@ -10,7 +10,6 @@ const cartSlice = createSlice({
       const existingProduct = state.find(
         (product) => product.id === productToAdd.id
       );
-
       if (!existingProduct) {
         state.push(productToAdd);
         toast.success("Added to Cart Successfully");
@@ -29,6 +28,9 @@ const cartSlice = createSlice({
         toast.success("Deleted from cart successfully");
       }
     },
+    clearCart: (state) => {
+      state.splice(0, state.length);
+    },
   },
 });
 
@@ -37,5 +39,5 @@ export const useCart = () => {
   return cart;
 };
 
-export const { addToCart, deleteFromCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

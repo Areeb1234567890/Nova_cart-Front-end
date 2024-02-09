@@ -68,7 +68,12 @@ const Order = () => {
                       <td>
                         <button
                           onClick={() => {
-                            navigate("/admin/order/" + Data._id);
+                            navigate("/admin/order/" + Data._id, {
+                              replace: true,
+                              state: {
+                                data: Data,
+                              },
+                            });
                           }}
                           className="Edit"
                         >
