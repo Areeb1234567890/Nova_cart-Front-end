@@ -22,12 +22,19 @@ import {
 } from "../../redux/sclices/orderSclice/getOrder";
 
 const Navbar = () => {
+  const _token = sessionStorage.getItem("authUser");
+  const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
+
+  const [searchUser, setSearchUser] = useState("");
   const dispatch = useDispatch();
   const { GetOrderResponse } = useOrderData();
 
   useEffect(() => {
-    dispatch(getOrder());
+    if (_token) {
+      dispatch(getOrder());
+    }
   }, []);
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -39,9 +46,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const cart = useCart();
-  const _token = sessionStorage.getItem("authUser");
-  const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
-  const [searchUser, setSearchUser] = useState("");
 
   const handleSearch = () => {
     if (searchUser !== "") {
