@@ -56,6 +56,9 @@ const Login = () => {
         <button type="submit" className="Btn-Login">
           Login
         </button>
+        <h3 style={{ paddingTop: "15px" }}>(Admin : mohsinaac3@gmail.com)</h3>
+        <h3>(Customer : areebmhsn@gmail.com)</h3>
+        <h3>(Password for both : 12345)</h3>
       </form>
     </div>
   );

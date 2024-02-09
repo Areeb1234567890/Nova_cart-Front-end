@@ -36,13 +36,6 @@ const ProductList = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSearch = async () => {
-    if (searchUser !== "") {
-    } else {
-      toast.error("Enter name to search");
-    }
-  };
-
   const handleDelete = (Data) => {
     try {
       dispatch(deleteProduct({ credentials: Data }));
@@ -87,11 +80,6 @@ const ProductList = () => {
               onChange={(e) => {
                 setSearchUser(e.target.value);
               }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
               value={searchUser}
               placeholder="Search for Product"
             />
@@ -115,67 +103,75 @@ const ProductList = () => {
             </thead>
             <tbody>
               {userData && userData.length > 0 ? (
-                userData.map((Data, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{Data._id}</td>
-                      <td>{Data.title}</td>
-                      <td>{Data.price}</td>
-                      <td>{Data.image}</td>
-                      <td>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <button className="Edit Table">Edit</button>
-
-                          <button
-                            className="Edit Table Delete"
-                            onClick={handleOpen}
+                userData
+                  .filter((product) =>
+                    product.title
+                      .toLowerCase()
+                      .includes(searchUser.toLowerCase())
+                  )
+                  .map((Data, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{Data._id}</td>
+                        <td>{Data.title}</td>
+                        <td>{Data.price}</td>
+                        <td>{Data.image}</td>
+                        <td>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
                           >
-                            Delete
-                          </button>
-                        </div>
-                        <Modal
-                          open={open}
-                          onClose={handleClose}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <Box sx={style} className="ModalBody">
-                            <Typography
-                              id="modal-modal-title"
-                              variant="h6"
-                              component="h2"
+                            <button className="Edit Table">Edit</button>
+
+                            <button
+                              className="Edit Table Delete"
+                              onClick={handleOpen}
                             >
-                              Are You Sure?
-                            </Typography>
-                            <Typography
-                              id="modal-modal-description"
-                              sx={{ mt: 2 }}
-                            >
-                              If you delete the product it will not be
-                              restored!!
-                            </Typography>
-                            <div className="buttons">
-                              <Button
-                                className="Edit Table"
-                                onClick={handleClose}
+                              Delete
+                            </button>
+                          </div>
+                          <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                          >
+                            <Box sx={style} className="ModalBody">
+                              <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
                               >
-                                Cancel
-                              </Button>
-                              <Button
-                                className="Edit Table Delete"
-                                onClick={() => {
-                                  handleDelete(Data._id);
-                                }}
+                                Are You Sure?
+                              </Typography>
+                              <Typography
+                                id="modal-modal-description"
+                                sx={{ mt: 2 }}
                               >
-                                Yes
-                              </Button>
-                            </div>
-                          </Box>
-                        </Modal>
-                      </td>
-                    </tr>
-                  );
-                })
+                                If you delete the product it will not be
+                                restored!!
+                              </Typography>
+                              <div className="buttons">
+                                <Button
+                                  className="Edit Table"
+                                  onClick={handleClose}
+                                >
+                                  Cancel
+                                </Button>
+                                <Button
+                                  className="Edit Table Delete"
+                                  onClick={() => {
+                                    handleDelete(Data._id);
+                                  }}
+                                >
+                                  Yes
+                                </Button>
+                              </div>
+                            </Box>
+                          </Modal>
+                        </td>
+                      </tr>
+                    );
+                  })
               ) : (
                 <tr>
                   <td>Nothing found :(</td>

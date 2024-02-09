@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import Spinner from "../../assets/Images/Spinner.svg";
 import { useNavigate } from "react-router-dom";
 
-const ProductSec = () => {
+const ProductSec = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { GetProductResponse, isLoading } = useDataProduct();
@@ -35,32 +35,67 @@ const ProductSec = () => {
             <img src={Spinner} alt="spinner" />
           </div>
         ) : productData && productData.length > 0 ? (
-          productData.map((Data, index) => {
-            return (
-              <div
-                key={index}
-                className="Product"
-                onClick={() => {
-                  navigate(`/productDets/${Data._id}`, {
-                    replace: true,
-                    state: {
-                      image: Data.image,
-                      title: Data.title,
-                      price: Data.price,
-                      description: Data.description,
-                      brand: Data.brand,
-                      quantity: Data.qty,
-                      id: Data._id,
-                    },
-                  });
-                }}
-              >
-                <PImg image={Data.image}></PImg>
-                <h3>{Data.title}</h3>
-                <h2 className="Price">${Data.price}</h2>
-              </div>
-            );
-          })
+          product && product.length > 0 ? (
+            productData
+              .filter(
+                (data) =>
+                  product &&
+                  data.title.toLowerCase().includes(product.toLowerCase() || "")
+              )
+              .map((Data, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="Product"
+                    onClick={() => {
+                      navigate(`/productDets/${Data._id}`, {
+                        replace: true,
+                        state: {
+                          image: Data.image,
+                          title: Data.title,
+                          price: Data.price,
+                          description: Data.description,
+                          brand: Data.brand,
+                          quantity: Data.qty,
+                          id: Data._id,
+                        },
+                      });
+                    }}
+                  >
+                    <PImg image={Data.image}></PImg>
+                    <h3>{Data.title}</h3>
+                    <h2 className="Price">${Data.price}</h2>
+                  </div>
+                );
+              })
+          ) : (
+            productData.map((Data, index) => {
+              return (
+                <div
+                  key={index}
+                  className="Product"
+                  onClick={() => {
+                    navigate(`/productDets/${Data._id}`, {
+                      replace: true,
+                      state: {
+                        image: Data.image,
+                        title: Data.title,
+                        price: Data.price,
+                        description: Data.description,
+                        brand: Data.brand,
+                        quantity: Data.qty,
+                        id: Data._id,
+                      },
+                    });
+                  }}
+                >
+                  <PImg image={Data.image}></PImg>
+                  <h3>{Data.title}</h3>
+                  <h2 className="Price">${Data.price}</h2>
+                </div>
+              );
+            })
+          )
         ) : (
           <h3>Nothing found :(</h3>
         )}

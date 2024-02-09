@@ -25,7 +25,7 @@ const Navbar = () => {
   const _token = sessionStorage.getItem("authUser");
   const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
 
-  const [searchUser, setSearchUser] = useState("");
+  const [searchProduct, setSearchProduct] = useState("");
   const dispatch = useDispatch();
   const { GetOrderResponse } = useOrderData();
 
@@ -34,7 +34,7 @@ const Navbar = () => {
       dispatch(getOrder());
     }
   }, []);
-  
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -48,7 +48,13 @@ const Navbar = () => {
   const cart = useCart();
 
   const handleSearch = () => {
-    if (searchUser !== "") {
+    if (searchProduct !== "") {
+      navigate(`/search`, {
+        replace: true,
+        state: {
+          data: searchProduct,
+        },
+      });
     } else {
       toast.error("Enter product name to search");
     }
@@ -73,16 +79,22 @@ const Navbar = () => {
               type="text"
               placeholder="Search product"
               onChange={(e) => {
-                setSearchUser(e.target.value);
+                setSearchProduct(e.target.value);
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleSearch();
                 }
               }}
-              value={searchUser}
+              value={searchProduct}
             />
-            <button>search</button>
+            <button
+              onClick={() => {
+                handleSearch();
+              }}
+            >
+              search
+            </button>
           </div>
 
           {!_token ? (
@@ -222,6 +234,7 @@ const Navbar = () => {
                     <MenuItem
                       onClick={() => {
                         handleClose();
+                        navigate(`/orders/${userId}`);
                       }}
                     >
                       My Orders

@@ -46,7 +46,6 @@ const CartOrder = () => {
   };
 
   const inputHandler = (e) => {
-    console.log(postData);
     const { name } = e.target;
     if (name === "file") {
       const file = e.target.files[0];
@@ -146,15 +145,27 @@ const CartOrder = () => {
                         >
                           {data.title}
                         </h3>
-                        <span
-                          style={{
-                            fontFamily: "Regular",
-                            fontSize: "20px",
-                            fontWeight: "700",
-                          }}
-                        >
-                          ${data.price}
-                        </span>
+                        <div>
+                          <span
+                            style={{
+                              fontFamily: "Regular",
+                              fontSize: "18px",
+                              fontWeight: "700",
+                            }}
+                          >
+                            {data.count} x ${data.price} =
+                          </span>
+                          <span
+                            style={{
+                              fontFamily: "Regular",
+                              fontSize: "18px",
+                              fontWeight: "700",
+                              paddingLeft: "5px",
+                            }}
+                          >
+                            ${data.count * data.price}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   );
@@ -164,7 +175,7 @@ const CartOrder = () => {
             <hr />
             <div className="payment">
               <div className="dets">
-                <h3 className="sec">Quantity</h3>
+                <h3 className="sec">Products</h3>
                 <h3 className="sec">{cart?.length}</h3>
               </div>
               <div className="dets">

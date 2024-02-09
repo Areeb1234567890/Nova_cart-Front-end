@@ -12,6 +12,8 @@ import AddressDets from "./components/AdressDets/AddressDets";
 import Cart from "./components/Cart/Cart";
 import CartOrder from "./components/CartCheckout/CartOrder";
 import OrdersDets from "./components/OrdersDetail/OrdersDets";
+import SearchProduct from "./components/SearchProduct/SearchProduct";
+import UserOrders from "./components/UserOrders/UserOrders";
 import Order from "./components/Orders/Order";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,9 +27,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/search" element={<SearchProduct />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/admin/orders" element={<Order />}></Route>
+          <Route path="/orders/:id" element={<UserOrders />}></Route>
           <Route path="/admin/order/:id" element={<OrdersDets />}></Route>
           <Route path="/cartCheckout" element={<CartOrder />}></Route>
           <Route path="/adressDetails" element={<AddressDets />}></Route>
