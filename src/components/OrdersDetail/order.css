@@ -59,7 +59,7 @@
   padding: 20px 10px;
 }
 .ProductsDisplay {
-  max-height: 65%;
+  max-height: 366px;
   overflow-y: scroll;
   width: 100%;
   margin-bottom: 10px;
@@ -69,7 +69,7 @@
 }
 .Btn {
   height: 40px;
-  width: 35%;
+  width: 50%;
   background-color: #343a40;
   color: #fff;
   font-weight: 600;

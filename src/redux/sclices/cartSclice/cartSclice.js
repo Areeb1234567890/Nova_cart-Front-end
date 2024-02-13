@@ -12,7 +12,6 @@ const cartSlice = createSlice({
       );
       if (!existingProduct) {
         state.push(productToAdd);
-        toast.success("Added to Cart Successfully");
       } else {
         toast.info("Already added!!");
       }

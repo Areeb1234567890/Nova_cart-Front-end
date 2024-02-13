@@ -97,7 +97,6 @@ const ProductList = () => {
                 <th>Id</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Image</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -114,8 +113,7 @@ const ProductList = () => {
                       <tr key={index}>
                         <td>{Data._id}</td>
                         <td>{Data.title}</td>
-                        <td>{Data.price}</td>
-                        <td>{Data.image}</td>
+                        <td>${Data.price}</td>
                         <td>
                           <div
                             style={{ display: "flex", alignItems: "center" }}

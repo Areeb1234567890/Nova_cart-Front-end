@@ -95,9 +95,49 @@ const OrdersDets = () => {
             </div>
 
             {isAdmin === true ? (
-              <button className="Btn">Dispatched</button>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "30px",
+                  justifyContent: "center",
+                }}
+              >
+                <button className="Btn">Dispatched</button>
+              </div>
             ) : (
-              <button className="Btn">Deliverd</button>
+              <>
+                {data.deliver === true ? (
+                  <div
+                    style={{
+                      width: "100%",
+                      backgroundColor: "#abeeaf",
+                      marginTop: "35px",
+                      padding: "10px 0",
+                      textAlign: "center",
+                      color: "#fff",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <h3 style={{ fontFamily: "Regular" }}>Order Deliverd</h3>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      backgroundColor: "rgb(245, 127, 127)",
+                      marginTop: "35px",
+                      padding: "10px 0",
+                      textAlign: "center",
+                      color: "#fff",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <h3 style={{ fontFamily: "Regular" }}>Not Deliverd</h3>
+                  </div>
+                )}
+              </>
             )}
           </div>
 

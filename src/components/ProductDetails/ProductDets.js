@@ -14,6 +14,7 @@ const ProductDets = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(1);
   const _token = sessionStorage.getItem("authUser");
+  const { isAdmin } = _token ? JSON.parse(_token) : {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -71,7 +72,7 @@ const ProductDets = () => {
               <div className="ButtonDiv">
                 <button
                   className="Btn"
-                  disabled={!_token}
+                  disabled={!_token || isAdmin === true}
                   onClick={() => {
                     handleAddToCart();
                   }}
@@ -79,8 +80,8 @@ const ProductDets = () => {
                   Add to Cart
                 </button>
                 <button
-                  className="Btn buy"
-                  disabled={!_token}
+                  className="Btn buy "
+                  disabled={!_token || isAdmin === true}
                   onClick={() => {
                     navigate(`/adressDetails`, {
                       replace: true,

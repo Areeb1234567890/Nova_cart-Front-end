@@ -166,7 +166,6 @@ const Navbar = () => {
                     onClose={handleClose}
                     TransitionComponent={Fade}
                   >
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();
@@ -230,7 +229,6 @@ const Navbar = () => {
                     onClose={handleClose}
                     TransitionComponent={Fade}
                   >
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem
                       onClick={() => {
                         handleClose();
