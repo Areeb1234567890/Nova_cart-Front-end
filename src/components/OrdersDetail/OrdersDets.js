@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import Spinner from "../../assets/Images/Spinner.svg";
 
 const OrdersDets = () => {
+  const _token = sessionStorage.getItem("authUser");
+  const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
   const location = useLocation();
   const { data } = location.state;
   const [isLoading, setIsLoading] = useState(true);
@@ -91,6 +93,12 @@ const OrdersDets = () => {
                 </div>
               </div>
             </div>
+
+            {isAdmin === true ? (
+              <button className="Btn">Dispatched</button>
+            ) : (
+              <button className="Btn">Deliverd</button>
+            )}
           </div>
 
           <div className="Products">

@@ -19,6 +19,7 @@ const getUserOrder = createAsyncThunk("user/getOrders", async () => {
         checkAdmin: `${isAdmin}`,
       },
     });
+    console.log(response);
     return response.data;
   } catch (error) {
     toast.error(error.response.data.msg);
