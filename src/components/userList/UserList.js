@@ -60,7 +60,6 @@ const UserList = () => {
                 <th>Id</th>
                 <th>Name</th>
                 <th>User E-mail</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -75,16 +74,6 @@ const UserList = () => {
                         <td>{Data._id}</td>
                         <td>{Data.name}</td>
                         <td>{Data.email}</td>
-                        <td>
-                          <button
-                            // onClick={() => {
-                            //   nevigate("/Update/" + Data._id);
-                            // }}
-                            className="Edit"
-                          >
-                            Edit
-                          </button>
-                        </td>
                       </tr>
                     );
                   })

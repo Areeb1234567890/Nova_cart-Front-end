@@ -26,7 +26,6 @@ const loginUser = createAsyncThunk(
         toast.success(msg);
         navigate("/");
       }
-
       return response.data;
     } catch (error) {
       toast.error(error.response.data.msg);

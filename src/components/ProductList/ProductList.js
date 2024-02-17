@@ -30,17 +30,16 @@ const ProductList = () => {
   const { GetProductResponse } = useDataProduct();
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [renderData, setrenderData] = useState(1);
   const [searchUser, setSearchUser] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleDelete = (Data) => {
+  const handleDelete = async (Data) => {
     try {
-      dispatch(deleteProduct({ credentials: Data }));
-      setOpen(false);
-      setrenderData(renderData + 1);
+      await dispatch(deleteProduct({ credentials: Data }));
+      await setOpen(false);
+      window.location.reload();
     } catch (error) {
       console.error("Delete failed:", error);
     }
@@ -57,7 +56,7 @@ const ProductList = () => {
       await dispatch(getProduct());
     };
     callData();
-  }, [renderData]);
+  }, []);
 
   useEffect(() => {
     if (GetProductResponse && GetProductResponse.products) {
