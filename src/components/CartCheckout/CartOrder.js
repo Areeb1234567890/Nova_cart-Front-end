@@ -153,7 +153,7 @@ const CartOrder = () => {
                               fontWeight: "700",
                             }}
                           >
-                            {data.count} x ${data.price} =
+                            ${data.price} x {data.count} =
                           </span>
                           <span
                             style={{

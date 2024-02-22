@@ -138,7 +138,7 @@ const AddressDets = () => {
                     fontWeight: "700",
                   }}
                 >
-                  ${price}
+                  ${price} x {quantity} = {price * quantity}
                 </span>
               </div>
             </div>
