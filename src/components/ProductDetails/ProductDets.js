@@ -72,9 +72,13 @@ const ProductDets = () => {
               <div className="ButtonDiv">
                 <button
                   className="Btn"
-                  disabled={!_token || isAdmin === true}
+                  disabled={isAdmin === true}
                   onClick={() => {
-                    handleAddToCart();
+                    if (_token) {
+                      handleAddToCart();
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 >
                   Add to Cart
@@ -83,16 +87,20 @@ const ProductDets = () => {
                   className="Btn buy "
                   disabled={!_token || isAdmin === true}
                   onClick={() => {
-                    navigate(`/adressDetails`, {
-                      replace: true,
-                      state: {
-                        image: image,
-                        title: title,
-                        price: price,
-                        quantity: count,
-                        id: id,
-                      },
-                    });
+                    if (_token) {
+                      navigate(`/adressDetails`, {
+                        replace: true,
+                        state: {
+                          image: image,
+                          title: title,
+                          price: price,
+                          quantity: count,
+                          id: id,
+                        },
+                      });
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 >
                   Buy now
