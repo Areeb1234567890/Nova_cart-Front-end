@@ -1,20 +1,47 @@
 import React, { useEffect, useState } from "react";
 import "./order.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Spinner from "../../assets/Images/Spinner.svg";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const OrdersDets = () => {
+  const value = {
+    deliverd: true,
+  };
   const _token = sessionStorage.getItem("authUser");
-  const { isAdmin, userId } = _token ? JSON.parse(_token) : {};
+  const { isAdmin, token } = _token ? JSON.parse(_token) : {};
   const location = useLocation();
   const { data } = location.state;
   const [isLoading, setIsLoading] = useState(true);
+  const [dispatch, setDispatch] = useState(value);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
   }, []);
+
+  const dispatchOrder = async (id) => {
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_DISPATCH_PRODUCT_API}/${id}`,
+        dispatch,
+        {
+          headers: {
+            Authorization: `${token}`,
+            checkAdmin: `${isAdmin}`,
+          },
+        }
+      );
+      toast.success(res.data.msg);
+      navigate("/admin/orders");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.msg);
+    }
+  };
 
   return (
     <>
@@ -104,11 +131,13 @@ const OrdersDets = () => {
                   justifyContent: "center",
                 }}
               >
-                <button className="Btn">Dispatched</button>
+                <button className="Btn" onClick={() => dispatchOrder(data._id)}>
+                  Dispatched
+                </button>
               </div>
             ) : (
               <>
-                {data.deliver === true ? (
+                {data.deliverd === true ? (
                   <div
                     style={{
                       width: "100%",

@@ -10,6 +10,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CartIcon from "../../assets/Images/Cart.png";
 import ProfileIcon from "../../assets/Images/ProfileIcon.png";
+import Git from "../../assets/Images/Github.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
@@ -30,7 +31,7 @@ const Navbar = () => {
   const { GetOrderResponse } = useOrderData();
 
   useEffect(() => {
-    if (_token) {
+    if (_token && isAdmin === true) {
       dispatch(getOrder());
     }
   }, []);
@@ -43,6 +44,16 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [anchorEl2, setAnchorEl2] = useState(null);
+  const open2 = Boolean(anchorEl2);
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const cart = useCart();
@@ -99,6 +110,50 @@ const Navbar = () => {
 
           {!_token ? (
             <UserSec>
+              <>
+                <div
+                  className="Cart"
+                  id="fade-button"
+                  aria-haspopup="true"
+                  onClick={handleClick2}
+                >
+                  <img src={Git} alt="Profile" />
+                  <h4>GitHub</h4>
+                </div>
+                <Menu
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
+                  anchorEl={anchorEl2}
+                  open={open2}
+                  onClose={handleClose2}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                >
+                  <MenuItem onClick={handleClose2}>
+                    <a
+                      href="https://github.com/Areeb1234567890/Ecommerce-site-Front-end"
+                      target="_blank"
+                    >
+                      Front-end
+                    </a>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose2}>
+                    <a
+                      href="https://github.com/Areeb1234567890/Ecommerce-site"
+                      target="_blank"
+                    >
+                      Back-end
+                    </a>
+                  </MenuItem>
+                </Menu>
+              </>
+
               <Link
                 className={location.pathname === "/login" ? "active" : ""}
                 to="/login"
@@ -115,6 +170,50 @@ const Navbar = () => {
             </UserSec>
           ) : (
             <UserSec>
+              <>
+                <div
+                  className="Cart"
+                  id="fade-button"
+                  aria-haspopup="true"
+                  onClick={handleClick2}
+                >
+                  <img src={Git} alt="Profile" />
+                  <h4>GitHub</h4>
+                </div>
+                <Menu
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
+                  anchorEl={anchorEl2}
+                  open={open2}
+                  onClose={handleClose2}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                >
+                  <MenuItem onClick={handleClose2}>
+                    <a
+                      href="https://github.com/Areeb1234567890/Ecommerce-site-Front-end"
+                      target="_blank"
+                    >
+                      Front-end
+                    </a>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose2}>
+                    <a
+                      href="https://github.com/Areeb1234567890/Ecommerce-site"
+                      target="_blank"
+                    >
+                      Back-end
+                    </a>
+                  </MenuItem>
+                </Menu>
+              </>
+
               {isAdmin === true ? (
                 ""
               ) : (
@@ -145,9 +244,16 @@ const Navbar = () => {
                     onClick={handleClick}
                   >
                     {GetOrderResponse?.orders &&
-                    GetOrderResponse?.orders.length > 0 ? (
+                    GetOrderResponse.orders.filter((order) => !order.deliverd)
+                      .length > 0 ? (
                       <Count2>
-                        <span>{GetOrderResponse.orders.length}</span>
+                        <span>
+                          {
+                            GetOrderResponse.orders.filter(
+                              (order) => !order.deliverd
+                            ).length
+                          }
+                        </span>
                       </Count2>
                     ) : (
                       ""
@@ -174,9 +280,16 @@ const Navbar = () => {
                     >
                       Orders
                       {GetOrderResponse?.orders &&
-                      GetOrderResponse?.orders.length > 0 ? (
+                      GetOrderResponse.orders.filter((order) => !order.deliverd)
+                        .length > 0 ? (
                         <Count3>
-                          <span>{GetOrderResponse.orders.length}</span>
+                          <span>
+                            {
+                              GetOrderResponse.orders.filter(
+                                (order) => !order.deliverd
+                              ).length
+                            }
+                          </span>
                         </Count3>
                       ) : (
                         ""

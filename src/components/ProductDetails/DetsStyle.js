@@ -110,5 +110,11 @@ export const ProductInfoSec = styled.div`
         background-color: orange !important;
       }
     }
+    .disable {
+      background-color: grey !important;
+      &:hover {
+        background-color: grey !important;
+      }
+    }
   }
 `;

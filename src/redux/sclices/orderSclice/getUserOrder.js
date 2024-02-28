@@ -22,7 +22,7 @@ const getUserOrder = createAsyncThunk("user/getOrders", async () => {
     console.log(response);
     return response.data;
   } catch (error) {
-    toast.error(error.response.data.msg);
+    // toast.error(error.response.data.msg);
   }
 });
 

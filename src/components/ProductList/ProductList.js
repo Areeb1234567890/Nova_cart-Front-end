@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import "../userList/tableStyle.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -22,7 +21,7 @@ const ProductList = () => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    boxShadow: 24,
+    boxShadow: 0,
     p: 4,
   };
   const nevigate = useNavigate();
@@ -117,7 +116,19 @@ const ProductList = () => {
                           <div
                             style={{ display: "flex", alignItems: "center" }}
                           >
-                            <button className="Edit Table">Edit</button>
+                            <button
+                              className="Edit Table"
+                              onClick={() => {
+                                nevigate(`/edit/${Data._id}`, {
+                                  replace: true,
+                                  state: {
+                                    id: Data._id,
+                                  },
+                                });
+                              }}
+                            >
+                              Edit
+                            </button>
 
                             <button
                               className="Edit Table Delete"

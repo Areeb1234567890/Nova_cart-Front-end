@@ -61,7 +61,7 @@ const Register = () => {
         <input
           className="LoginInput"
           type="password"
-          placeholder="Enter tour password"
+          placeholder="Enter your password"
           name="password"
           onChange={(e) => {
             handleInput(e);

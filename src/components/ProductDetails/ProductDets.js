@@ -71,7 +71,9 @@ const ProductDets = () => {
 
               <div className="ButtonDiv">
                 <button
-                  className="Btn"
+                  className={`Btn ${
+                    !_token || isAdmin === true ? "disable" : ""
+                  }`}
                   disabled={isAdmin === true}
                   onClick={() => {
                     if (_token) {
@@ -84,7 +86,9 @@ const ProductDets = () => {
                   Add to Cart
                 </button>
                 <button
-                  className="Btn buy "
+                  className={`Btn buy ${
+                    !_token || isAdmin === true ? "disable" : ""
+                  }`}
                   disabled={!_token || isAdmin === true}
                   onClick={() => {
                     if (_token) {
