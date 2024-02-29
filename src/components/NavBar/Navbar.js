@@ -321,7 +321,7 @@ const Navbar = () => {
                     </MenuItem>
                   </Menu>
                 </>
-              ) : (
+              ) : (   
                 <>
                   <div
                     className="Cart"

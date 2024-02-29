@@ -149,7 +149,7 @@ const OrdersDets = () => {
                       borderRadius: "5px",
                     }}
                   >
-                    <h3 style={{ fontFamily: "Regular" }}>Order Deliverd</h3>
+                    <h3 style={{ fontFamily: "Regular" }}>Order Delivered</h3>
                   </div>
                 ) : (
                   <div
